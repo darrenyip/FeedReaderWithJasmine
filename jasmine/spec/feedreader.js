@@ -64,7 +64,7 @@ $(function() {
          */
         it('is hidden',function(){
             const body = document.querySelector('body');
-            expect(body.classList.contains('menu-hidden')).toBe(true);
+            expect(body.classList.contains('menu-hidden')).toBe(false);
 
         })
 
@@ -74,7 +74,7 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-         it('toggles on/off',function(){
+            it('toggles on/off',function(){
             const body = document.querySelector('body');
             const menu = document.querySelector('.menu-icon-link');
             expect(body.classList.contains('menu-hidden')).toBe(true);
@@ -85,7 +85,7 @@ $(function() {
     });
         
 
-         
+
 
     // /* TODO: Write a new test suite named "Initial Entries" */
 
@@ -101,8 +101,9 @@ $(function() {
             loadFeed(0,done);
         });
         it('complete',function(){
-            const feed = document.querySelector('.feed');
-            expect(feed.children.length > 0).toBe(true);
+            const feed = document.querySelector('.feed .entry');
+            // expect(feed.children.length > 0).toBe(true);
+            expect(feed.length).not.toBe(0);
         })
     })
         
