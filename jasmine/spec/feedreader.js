@@ -110,20 +110,20 @@ $(function() {
 
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection',function(){
-        const feed = document.querySelector('.feed');
-        const firstFeed = [];
+        var preFeedData;
+        
         beforeEach(function(done){
-            loadFeed(0);
-            Array.from(feed.children).forEach(function(entry){
-                firstFeed.push(entry.innerText);
+            loadFeed(0,function(){
+                preFeedData = $('.feed').html();
+                loadFeed(1,function(){
+                    done();
+                })
             })
-            loadFeed(1,done);
         })
-        it('content changed',function(){
-            Array.from(feed.children).forEach(function(entry,index){
-                console.log(entry.innerText,firstFeed[index],entry.innerText === firstFeed[index]);
-                expect(entry.innerText === firstFeed[index]).toBe(false);
-            })
+        it('content changed',function(done){
+            var newFeed = $('.feed').html();
+            expect(newFeed).not.toBe(preFeedData);
+            done();
         })
     })
         
